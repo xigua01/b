@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/zz.css"/>
+		<script src="js/zepto.min.js" ></script>
+	</head>
+	<body>
+		<div id="box" class="box">
+			<div>asd</div>
+			<div>asfd</div>
+			<div>dfgdf</div>
+			<div>sdfwe</div>
+			<div><button>点击</button></div>
+		</div>
+		<script>
+			var box=document.getElementById("box");
+			box.addEventListener("touchstart",function(ev){
+				ev.preventDefault();
+			})
+			var w=$(".box").find("div").eq(0).width();
+//			console.log(w)
+			$(function(){
+				var n=0;
+				$("#box").on("swipeLeft",function(){
+//					alert("aa")
+					n++;
+					console.log(n)
+					if (n>$(".box").find("div").size()-1) {
+						n=$(".box").find("div").size()-1;
+					}
+					$(".box").css("transform","translate3d(-"+n*w+"px,0,0)");
+					console.log(n*w)
+					
+				})
+				$("#box").on("swipeRight",function(){
+					n--;
+					console.log(n)
+					if (n<0) {
+						n=0;
+					}
+					$(".box").css("transform","translate3d(-"+n*w+"px,0,0)");
+					
+				})
+				$("button").on("tap",function(){
+					location.href="http://www.baidu.com";
+				})
+			})
+		</script>
+	</body>
+</html>
